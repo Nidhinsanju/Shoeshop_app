@@ -55,7 +55,7 @@ function Cart() {
               variant="outlined"
               onClick={() => {
                 const value = JSON.stringify({ CustomerId: CustomerId });
-                fetch(BACKEND_URL + "user/deleteproduct/" + data.ProductID, {
+                fetch(SERVER_URL + "user/deleteproduct/" + data.ProductID, {
                   method: "Post",
                   headers: {
                     "Content-Type": "application/json",

@@ -1,12 +1,10 @@
 // GlobalFunction.js
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { SERVER_URL } from "./api";
 
 // Declare the function globally
 window.sharedFunction = (ID) => {
-  const SERVER_URL = process.env.SERVER_URL;
-  console.log(SERVER_URL);
-
   const navigate = useNavigate;
   const CustomerID = localStorage.getItem("CustomerID");
   const token = localStorage.getItem("token");

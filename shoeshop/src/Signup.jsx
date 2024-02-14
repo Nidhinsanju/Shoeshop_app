@@ -65,18 +65,16 @@ function Signup() {
                     alert("Signed in Successfully");
                     localStorage.setItem("token", data.token);
                     localStorage.setItem("CustomerID", data.CustomerId);
-                    window.location = "/shophub/";
-                    navigate("/shophub/");
-                  }
-                  if (response.status === 403) {
-                    alert("User already existss");
+                    window.location = "/";
+                    navigate("/");
                   }
                 }
               } catch (error) {
-                if (error.response.status) {
-                  console.log(error.response.status);
-                  alert("User already exists");
+                if (error.response.status === 403) {
+                  alert("User already existss");
                   return <div>Unexpected Server Error!!</div>;
+                } else {
+                  alert("Internal Server Error");
                 }
               }
             }}
