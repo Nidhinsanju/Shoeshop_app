@@ -12,17 +12,12 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+mongoose.connect(DATABASE_URL1, {
+  dbName: "shoeShopDB",
+});
+
 app.use("/admin", adminRouter);
 app.use("/user", userRouter);
-
-if (DATABASE_URL1) {
-  mongoose.connect(DATABASE_URL1, {
-    dbName: "shoeShopDB",
-  });
-} else {
-  console.log("control reacched here");
-}
-
 
 app.listen(PORT, () => {
   console.log(`server is running on port ${PORT}`);
