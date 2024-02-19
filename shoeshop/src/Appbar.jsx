@@ -84,7 +84,7 @@ function Appbar() {
     const token = localStorage.getItem("token");
     if (token != "null") {
       return (
-        <div>
+        <div className="flex flex-wrap">
           <Button
             variant="contained"
             onClick={() => {
@@ -95,47 +95,6 @@ function Appbar() {
           >
             Logout
           </Button>
-        </div>
-      );
-    } else {
-      return (
-        <div
-          style={{
-            display: "flex",
-            backgroundColor: "grey",
-            justifyContent: "space-between",
-            alignContent: "center",
-            height: "100%",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              backgroundColor: "grey",
-              alignItems: "center",
-            }}
-          >
-            <div style={{ marginLeft: "10px" }}>
-              <Button
-                variant="contained"
-                onClick={() => {
-                  navigate("/shophub/login");
-                }}
-              >
-                Login
-              </Button>
-            </div>
-            <div style={{ marginLeft: "10px" }}>
-              <Button
-                variant="contained"
-                onClick={() => {
-                  navigate("/shophub/Signup");
-                }}
-              >
-                Signup
-              </Button>
-            </div>
-          </div>
         </div>
       );
     }

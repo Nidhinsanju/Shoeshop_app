@@ -1,19 +1,37 @@
 import Card from "@mui/material/Card";
 import useFetchProduct from "./Hooks/usefetchproduct";
+import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
+import LoadingStyle from "./loading";
 
 function Shop() {
   const [product, setProducts] = useFetchProduct();
   const [ID, setID] = useState();
+  const [loading, setLoading] = React.useState(true);
 
   useEffect(() => {
     if (product != undefined) {
       setID(product?.[0]?.ProductID);
     }
   }, [product]);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+    setProducts();
+  }, []);
+
   const navigate = useNavigate();
+  if (loading) {
+    return (
+      <div>
+        <LoadingStyle />
+      </div>
+    );
+  }
   return (
     <div>
       <Card style={{ backgroundColor: "white" }}>
@@ -39,7 +57,7 @@ function Shop() {
             <img
               src={
                 ID
-                  ? product.filter((p) => p.ProductID === ID)[0].imageLink
+                  ? product?.filter((p) => p.ProductID === ID)[0].imageLink
                   : null
               }
               alt="product Image"
@@ -64,7 +82,7 @@ function Shop() {
               fontSize: "25px",
             }}
           >
-            {ID ? product.filter((p) => p.ProductID === ID)[0].Title : null}
+            {ID ? product?.filter((p) => p.ProductID === ID)[0].Title : null}
           </h1>
           <Button
             variant="contained"
@@ -77,7 +95,7 @@ function Shop() {
             type="disabled"
             onClick={() => {
               ID
-                ? product.filter((p) => p.ProductID === ID)[0].ProductID
+                ? product?.filter((p) => p.ProductID === ID)[0].ProductID
                 : null;
               setID(product.ProductID);
               window.sharedFunction(ID);
@@ -97,7 +115,7 @@ function Shop() {
             flexWrap: "wrap",
           }}
         >
-          {product.map((data) => {
+          {product?.map((data) => {
             return (
               <div key={data.ProductID}>
                 <button
@@ -145,7 +163,7 @@ function Shop() {
           border: "2px solid red",
         }}
       >
-        {products.map((data) => {
+        {products?.map((data) => {
           return (
             <Card
               style={{

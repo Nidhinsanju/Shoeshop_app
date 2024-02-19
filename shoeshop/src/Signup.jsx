@@ -81,6 +81,17 @@ function Signup() {
           >
             SignUp
           </Button>
+          <div>
+            <div className="flex flex-wrap text-blue-700 pt-3">
+              Exisitng User..?
+              <a
+                href="/shophub/login"
+                className="underline pl-2 hover:text-yellow-700"
+              >
+                Log-in
+              </a>
+            </div>
+          </div>
         </Card>
       </div>
     </div>

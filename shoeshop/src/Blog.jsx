@@ -1,11 +1,28 @@
 import Card from "@mui/material/Card";
+import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import useFetchProduct from "./Hooks/usefetchproduct";
+import LoadingStyle from "./loading";
+import { useEffect, useState } from "react";
 
 function Blog() {
   const navigate = useNavigate();
   const [product, setProducts] = useFetchProduct();
+  const [loading, setLoading] = React.useState(true);
 
+  React.useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+    setProducts();
+  }, []);
+  if (loading) {
+    return (
+      <div>
+        <LoadingStyle />
+      </div>
+    );
+  }
   return (
     <div
       style={{
@@ -15,7 +32,7 @@ function Blog() {
         rowGap: "10x px",
       }}
     >
-      {product.map((data) => {
+      {product?.map((data) => {
         return (
           <Card style={{ margin: "70px" }} key={data.Description}>
             <button

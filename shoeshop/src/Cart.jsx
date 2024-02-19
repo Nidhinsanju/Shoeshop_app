@@ -1,13 +1,23 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "@mui/material/Card";
+import * as React from "react";
 import Button from "@mui/material/Button";
 import { SERVER_URL } from "./Constents/api";
+import LoadingStyle from "./loading";
 function Cart() {
   const navigate = useNavigate("");
   const [products, setProducts] = useState([]);
   const token = localStorage.getItem("token");
   const CustomerId = localStorage.getItem("CustomerID");
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+    setProducts();
+  }, []);
 
   useEffect(() => {
     if (token === "null") {
@@ -29,11 +39,17 @@ function Cart() {
       });
     }
   });
-
+  if (loading) {
+    return (
+      <div>
+        <LoadingStyle />
+      </div>
+    );
+  }
   return (
     <div>
-      {products.length > 0 ? (
-        products.map((data) => (
+      {products?.length > 0 ? (
+        products?.map((data) => (
           <Card style={{ margin: "20px" }} key={data.Description}>
             <h1>{data.Title}</h1>
             <h2>{data.price}</h2>
@@ -80,7 +96,12 @@ function Cart() {
           </Card>
         ))
       ) : (
-        <div>No items in cart to display</div>
+        <div className="h-screen flex items-center justify-center flex-wrap">
+          <img
+            src="https://www.seensil.com/assets/images/cart-empty.jpg"
+            alt="image"
+          />
+        </div>
       )}
     </div>
   );
