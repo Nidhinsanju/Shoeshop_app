@@ -84,10 +84,7 @@ function Signup() {
           <div>
             <div className="flex flex-wrap text-blue-700 pt-3">
               Exisitng User..?
-              <a
-                href="/shophub/login"
-                className="underline pl-2 hover:text-yellow-700"
-              >
+              <a href="/shophub/login" className=" pl-2 hover:text-yellow-700">
                 Log-in
               </a>
             </div>
