@@ -12,9 +12,13 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect(DATABASE_URL1, {
-  dbName: "shoeShopDB",
-});
+mongoose.connect(
+  DATABASE_URL1 ||
+    "mongodb+srv://Nidhin_5656:Nidhin%401606@cluster0.anuhjsu.mongodb.net/",
+  {
+    dbName: "shoeShopDB",
+  }
+);
 
 app.use("/admin", adminRouter);
 app.use("/user", userRouter);

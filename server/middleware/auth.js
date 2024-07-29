@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-const SECRET = process.env.secret; // This should be in an environment variable in a real application
+const SECRET = process.env.secret || "SecreT123"; // This should be in an environment variable in a real application
 
 const authenticateJwt = (req, res, next) => {
   try {
