@@ -1,1 +1,1 @@
-export const SERVER_URL = import.meta.env.VITE_BACKEND_URL;
+export const SERVER_URL = "https://shoeshop-app.onrender.com/";
